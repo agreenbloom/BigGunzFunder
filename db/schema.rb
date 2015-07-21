@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721191540) do
+ActiveRecord::Schema.define(version: 20150721193914) do
 
   create_table "pledges", force: :cascade do |t|
     t.float    "amount"
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(version: 20150721191540) do
     t.float    "goal"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "owner_id"
   end
+
+  add_index "projects", ["owner_id"], name: "index_projects_on_owner_id"
 
   create_table "rewards", force: :cascade do |t|
     t.string   "name"
