@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721184729) do
+ActiveRecord::Schema.define(version: 20150721190315) do
 
   create_table "pledges", force: :cascade do |t|
     t.float    "amount"
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "reward_id"
   end
 
   add_index "pledges", ["project_id"], name: "index_pledges_on_project_id"
+  add_index "pledges", ["reward_id"], name: "index_pledges_on_reward_id"
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -47,5 +49,18 @@ ActiveRecord::Schema.define(version: 20150721184729) do
   end
 
   add_index "rewards", ["project_id"], name: "index_rewards_on_project_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                        null: false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
 
 end
