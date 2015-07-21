@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721220403) do
+ActiveRecord::Schema.define(version: 20150721220907) do
 
   create_table "pledges", force: :cascade do |t|
     t.float    "amount"
@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20150721220403) do
     t.datetime "updated_at", null: false
     t.integer  "backer_id"
     t.integer  "project_id"
+    t.integer  "reward_id"
   end
 
   add_index "pledges", ["backer_id"], name: "index_pledges_on_backer_id"
   add_index "pledges", ["project_id"], name: "index_pledges_on_project_id"
+  add_index "pledges", ["reward_id"], name: "index_pledges_on_reward_id"
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
