@@ -17,7 +17,14 @@
 
 <p>
   <strong>Goal:</strong><br>
-  <%= number_to_currency(@project.goal) %>
+  <%= number_to_currency(@project.goal) %><br>
+  <dl>
+    <dt>Raised currently</dt>
+    <dd><%= number_to_currency(@project.raised) %></dd>
+
+    <dt>Amount needed to reach the goal</dt>
+    <dd><%= number_to_currency(@project.remaining) %></dd>
+  </dl>
 </p>
 
 <p>
@@ -27,6 +34,7 @@
 
 <%= form_for [@project, @pledge] do |f| -%>
   <fieldset>
+    <legend>Make a pledge on this project</legend>
     <div class="field">
       <%= f.label :amount %>
       $<%= f.number_field :amount %>.00
