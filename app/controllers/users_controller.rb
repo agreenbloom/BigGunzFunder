@@ -15,6 +15,8 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: "You've signed up!"
     else
       render :new, alert: "Please try again."
+    end
+
   end
 
   private
