@@ -1,19 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'rewards/index'
-
-  get 'rewards/new'
-
-  get 'rewards/create'
-
-  get 'rewards/destroy'
-
   root 'users#new'
 
-  resources :users, only: [:create, :new, :destroy] do
-    resources :pledges, only: [:index, :create, :new, :show]
-  end
-
+  resources :users, only: [:create, :new, :destroy]
   resources :sessions, only: [:create, :new, :destroy]
 
   get 'login' => 'sessions#new', :as => :login
@@ -21,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :rewards, only: [:index, :create, :new, :destroy]
+    resources :pledges, only: [:index, :new, :create, :show]
   end
 
 end
