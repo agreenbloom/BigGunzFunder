@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
 
   def create
     if @user = login(params[:email], params[:password])
-      redirect_to projects_url
       flash[:notice] = 'Login successful'
+      redirect_to projects_url
     else
       flash[:alert] = 'Login failed'
       render action: 'new'
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:users, notice: 'Logged out')
+    redirect_to(root_url, notice: 'Logged out')
   end
 
 end
