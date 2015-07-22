@@ -1,9 +1,26 @@
 <h2><%= @project.name %></h2>
 
-<p>Description: <%= @project.description %></p>
+<p>
+  <strong>Description:</strong><br>
+  <%= @project.description %>
+</p>
 
-<p>Start Date: <%= @project.start_date.strftime("%B %e, %Y") %></p>
+<p>
+  <strong>Start Date:</strong><br>
+  <%= @project.start_date.strftime("%B %e, %Y") %>
+</p>
 
-<p>End Date: <%= @project.end_date.strftime("%B %e, %Y") %></p>
+<p>
+  <strong>End Date:</strong><br>
+  <%= @project.end_date.strftime("%B %e, %Y") %>
+</p>
 
-<p>Goal: <%= number_to_currency(@project.goal) %></p>
+<p>
+  <strong>Goal:</strong><br>
+  <%= number_to_currency(@project.goal) %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @project.owner.full_name %>
+</p>
