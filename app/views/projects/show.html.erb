@@ -24,3 +24,16 @@
   <strong>Owner:</strong>
   <%= @project.owner.full_name %>
 </p>
+
+<%= form_for [@project, @pledge] do |f| -%>
+  <fieldset>
+    <div class="field">
+      <%= f.label :amount %>
+      $<%= f.number_field :amount %>.00
+    </div>
+    <div class="field">
+      <%= f.button "Make Pledge" %>
+    </div>
+  </fieldset>
+<% end -%>
+
