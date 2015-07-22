@@ -12,6 +12,19 @@
   <%= content_tag :div, msg, class: name %>
 <% end %>
 
+
+<% if current_user %>
+  <p>
+    Logged in as <%= current_user %>.
+    <%= link_to 'Log out', session_path(:current), method: :delete %> |
+  </p>
+<% else %>
+  <p>
+    <%= link_to 'Create an account', new_user_path %>
+    <%= link_to 'Log in', new_session_path  %>
+  </p>
+<% end %>
+
 <%= yield %>
 
 </body>

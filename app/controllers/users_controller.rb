@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to root_url
+      redirect_to projects_url
       flash[:notice] = "You've signed up!"
     else
-      render :root_url
+      render :new
       flash[:alert] = "Please try again."
     end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :crypted_password, :salt)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
 end

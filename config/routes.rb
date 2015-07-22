@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:create, :new, :destroy]
+
+  get 'login' => 'sessions#new', :as => :login
+  post 'logout' => 'sessions#destroy', :as => :logout
+
+  resources :projects
+
 end

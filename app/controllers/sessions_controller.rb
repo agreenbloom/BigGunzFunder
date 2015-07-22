@@ -1,20 +1,22 @@
 class SessionsController < ApplicationController
 
   def new
+    @user = User.new
   end
 
   def create
-    user = User.find_by(email: params[:email])
-
-    if user && user.authenticate(params[:password])
-      :notice = "Successfully logged in!"
-      session[:user_id] = user.id
-      redirect_to :root
+    if @user = login(params[:email], params[:password])
+      redirect_to projects_url
+      flash[:notice] = 'Login successful'
     else
-      :alert = "Wrong email or password. Please try again."
-      render :new
+      flash[:alert] = 'Login failed'
+      render action: 'new'
     end
+  end
 
+  def destroy
+    logout
+    redirect_to(:users, notice: 'Logged out')
   end
 
 end
