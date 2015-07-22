@@ -8,9 +8,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to root_url, notice: "You've signed up!"
+      redirect_to root_url
+      flash[:notice] = "You've signed up!"
     else
-      render :new, alert: "Please try again."
+      render :root_url
+      flash[:alert] = "Please try again."
     end
 
   end
