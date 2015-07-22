@@ -1,0 +1,9 @@
+<h2><%= @project.name %></h2>
+
+<p>Description: <%= @project.description %></p>
+
+<p>Start Date: <%= @project.start_date.strftime("%B %e, %Y") %></p>
+
+<p>End Date: <%= @project.end_date.strftime("%B %e, %Y") %></p>
+
+<p>Goal: <%= number_to_currency(@project.goal) %></p>

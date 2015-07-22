@@ -15,7 +15,6 @@ class UsersController < ApplicationController
       render :new
       flash[:alert] = "Please try again."
     end
-
   end
 
   private
