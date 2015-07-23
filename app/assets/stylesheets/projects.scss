@@ -41,8 +41,12 @@ aside.pledges {
   width: 40%;
   form {
     text-align: center;
+    fieldset {
+      border: 2px solid rgba(41, 128, 185, 1);
+    }
     legend {
       text-align: left;
+      padding: 0 10px;
     }
     div.field {
       display: inline;
@@ -50,18 +54,27 @@ aside.pledges {
       label {
         display: inline;
       }
+      input {
+        display: inline-block;
+        margin: 0 2px 0 5px;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid rgba(52, 152, 219, 1);
+        outline: none;
+      }
     }
   }
   h3 {
+    margin-top: 30px;
     text-align: center;
   }
   ul.user.pledges {
     margin: 0;
     padding: 0;
     li {
-      background: rgba(100,100,100,0.1);
+      background: rgba(41, 128, 185, 1);
       box-sizing: border-box;
-      padding: 10px 20px;
+      padding: 20px;
       border-radius: 4px;
       margin: 10px 0;
       overflow: auto;
@@ -70,18 +83,17 @@ aside.pledges {
       }
       div.pledge {
         box-sizing: border-box;
+        color: white;
         &.date {
-          float: left;
+          display: inline;
           width: 60%;
           text-align: left;
-          color: rgba(160,160,160,1);
         }
         &.amount {
           float: right;
           font-weight: bold;
-          padding: 20px 0 10px;
+          padding: 40px 0 0;
           font-size: 1.8rem;
-          color: rgba(80,80,80,1);
         }
       }
     }

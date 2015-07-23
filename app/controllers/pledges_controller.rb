@@ -12,7 +12,7 @@ class PledgesController < ApplicationController
       redirect_to @pledge.project
     else
       flash[:alert] = "Unable to make pledge.  Please try again."
-      render :new
+      redirect_to @pledge.project
     end
   end
 

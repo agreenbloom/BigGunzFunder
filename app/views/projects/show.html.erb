@@ -29,6 +29,13 @@
   <%= form_for [@project, @pledge] do |f| -%>
     <fieldset>
       <legend>Make a pledge on this project</legend>
+      <div class="errors">
+        <% if @pledge.errors.any? %>
+          <% @pledge.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        <% end %>
+      </div>
       <div class="field">
         <%= f.label :amount %>
         $<%= f.number_field :amount %>.00
