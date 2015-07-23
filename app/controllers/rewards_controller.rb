@@ -10,11 +10,12 @@ class RewardsController < ApplicationController
   def create
     @reward = Reward.new(reward_params)
     if @reward.save
-      redirect_to new_project_url(@project)
       flash[:notice] = "Success! Your reward was created."
+      redirect_to project_url(@project)
     else
-      render :new
       flash[:notice] = "Woops. Your reward couldn't be created."
+      render :new
+    end
   end
 
   private

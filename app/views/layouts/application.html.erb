@@ -15,12 +15,12 @@
 <% if current_user %>
   <p class="login">
     Logged in as <strong><%= current_user.full_name %></strong> |
-    <%= link_to 'Log out', session_path(:current), method: :delete %>
+    <%= link_to 'Log out', logout_path(:current), method: :delete %>
   </p>
 <% else %>
   <p class="login">
     <%= link_to 'Create an account', new_user_path %>
-    <%= link_to 'Log in', new_session_path  %>
+    <%= link_to 'Log in', login_path  %>
   </p>
 <% end %>
 

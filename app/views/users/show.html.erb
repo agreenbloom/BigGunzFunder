@@ -1,0 +1,26 @@
+<h2>User Profile</h2>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.full_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Total Pledges:</strong>
+  <%= number_to_currency(@user.total_pledges) %>
+</p>
+
+<strong>Projects backed:</strong>
+<ul class="pledges">
+  <% @user.pledges.each do |pledge| %>
+    <li class="user pledge">
+      <p><%= link_to pledge.project.name, pledge.project %></p>
+      <p><%= number_to_currency(pledge.amount) %></p>
+    </li>
+  <% end %>
+</ul>
