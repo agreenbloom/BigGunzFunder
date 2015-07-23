@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'logout' => 'sessions#destroy', :as => :logout
 
   resources :projects do
+    resources :rewards, only: [:index, :create, :new, :destroy]
     resources :pledges, only: [:index, :new, :create, :show]
   end
 

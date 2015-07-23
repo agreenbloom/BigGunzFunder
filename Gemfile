@@ -29,6 +29,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Bare bones authentication and authorization
 gem 'sorcery'
 
+# Nested form handling
+gem 'cocoon'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
