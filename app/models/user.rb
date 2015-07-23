@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+
+  def total_pledges
+    self.pledges.sum('amount')
+  end
 end

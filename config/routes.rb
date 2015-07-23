@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
-  resources :users, only: [:create, :new, :destroy]
+  resources :users, only: [:create, :new, :show]
   resources :sessions, only: [:create, :new, :destroy]
 
   get 'login' => 'sessions#new', :as => :login
