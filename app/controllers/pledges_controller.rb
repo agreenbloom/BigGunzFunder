@@ -13,7 +13,6 @@ class PledgesController < ApplicationController
       flash[:alert] = "Unable to make pledge"
       flash[:error] = @pledge.errors.full_messages.first
     end
-
     redirect_to @pledge.project
   end
 
