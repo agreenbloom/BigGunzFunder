@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
   def index
     @projects = Project.all
   end
@@ -26,11 +25,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @pledge = @project.pledges.build
     @pledge.backer = @current_user
+    @pledges = @project.pledges.where(backer: current_user)
   end
 
   private
   def project_params
     params.require(:project).permit(:name, :description, :start_date, :end_date, :goal)
   end
-
 end

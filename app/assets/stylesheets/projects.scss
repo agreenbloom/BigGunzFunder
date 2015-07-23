@@ -8,9 +8,75 @@ body {
   font-family: sans-serif;
   font-size: 14px;
 }
+
 div.field {
   margin: .85em 0;
   label {
     display: block;
+  }
+}
+
+section.project,
+aside.pledges {
+  box-sizing: border-box;
+  padding: 20px 0;
+}
+
+section.project {
+  width: 60%;
+  float: left;
+  dl {
+    margin: 0;
+    dt {
+      font-weight: bold;
+      margin-top: 20px;
+      &:first-child { margin-top: 0; }
+    }
+  }
+}
+
+aside.pledges {
+  float: right;
+  overflow: auto;
+  width: 40%;
+  form {
+    text-align: center;
+    legend {
+      text-align: left;
+    }
+    div.field {
+      display: inline;
+      line-height: 5;
+      label {
+        display: inline;
+      }
+    }
+  }
+  h3 {
+    text-align: center;
+  }
+  ul.user.pledges {
+    margin: 0;
+    padding: 0;
+    li {
+      background: rgba(100,100,100,0.1);
+      box-sizing: border-box;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 10px 0;
+      overflow: auto;
+      &:first-child {
+        margin-top: 0;
+      }
+      div.pledge {
+        box-sizing: border-box;
+        &.date {
+          float: left;
+          width: 60%;
+          text-align: left;
+        }
+        &.amount { float: right; }
+      }
+    }
   }
 }

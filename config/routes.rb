@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  root 'users#new'
+  root 'projects#index'
 
   resources :users, only: [:create, :new, :show]
   resources :sessions, only: :create
@@ -12,5 +11,4 @@ Rails.application.routes.draw do
     resources :rewards, only: [:index, :create, :new, :destroy]
     resources :pledges, only: [:index, :new, :create, :show]
   end
-
 end

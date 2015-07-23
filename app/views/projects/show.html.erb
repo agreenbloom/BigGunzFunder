@@ -1,47 +1,51 @@
 <h2><%= @project.name %></h2>
 
-<p>
-  <strong>Description:</strong><br>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Start Date:</strong><br>
-  <%= @project.start_date.strftime("%B %e, %Y") %>
-</p>
-
-<p>
-  <strong>End Date:</strong><br>
-  <%= @project.end_date.strftime("%B %e, %Y") %>
-</p>
-
-<p>
-  <strong>Goal:</strong><br>
-  <%= number_to_currency(@project.goal) %><br>
+<section class="project">
   <dl>
+    <dt>Description</dt>
+    <dd><%= @project.description %></dd>
+
+    <dt>Start Date:</dt>
+    <dd><%= @project.start_date.strftime("%B %e, %Y") %></dd>
+
+    <dt>End Date:</dt>
+    <dd><%= @project.end_date.strftime("%B %e, %Y") %></dd>
+
+    <dt>Goal:</dt>
+    <dd><%= number_to_currency(@project.goal) %></dd>
+
     <dt>Raised currently</dt>
     <dd><%= number_to_currency(@project.raised) %></dd>
 
     <dt>Amount needed to reach the goal</dt>
     <dd><%= number_to_currency(@project.remaining) %></dd>
+
+    <dt>Project Owner</dt>
+    <dd><%= @project.owner.full_name %></dd>
   </dl>
-</p>
+</section>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @project.owner.full_name %>
-</p>
+<aside class="pledges">
+  <%= form_for [@project, @pledge] do |f| -%>
+    <fieldset>
+      <legend>Make a pledge on this project</legend>
+      <div class="field">
+        <%= f.label :amount %>
+        $<%= f.number_field :amount %>.00
+      </div>
+      <div class="field">
+        <%= f.button "Make Pledge" %>
+      </div>
+    </fieldset>
+  <% end %>
 
-<%= form_for [@project, @pledge] do |f| -%>
-  <fieldset>
-    <legend>Make a pledge on this project</legend>
-    <div class="field">
-      <%= f.label :amount %>
-      $<%= f.number_field :amount %>.00
-    </div>
-    <div class="field">
-      <%= f.button "Make Pledge" %>
-    </div>
-  </fieldset>
-<% end -%>
-
+  <h3>Your pledges to this project</h3>
+  <ul class="user pledges">
+    <% @pledges.each do |pledge| %>
+      <li>
+        <div class="pledge date"><%= pledge.created_at.strftime("%A, %B %d %Y") %></div>
+        <div class="pledge amount"><%= number_to_currency(pledge.amount) %></div>
+      </li>
+    <% end %>
+  </ul>
+</aside>
