@@ -14,62 +14,25 @@
     <dt>Goal:</dt>
     <dd><%= number_to_currency(@project.goal) %></dd>
 
-    <dt>Raised currently</dt>
-    <dd><%= number_to_currency(@project.raised) %></dd>
-
-    <dt>Amount needed to reach the goal</dt>
-    <dd><%= number_to_currency(@project.remaining) %></dd>
-
     <dt>Project Owner</dt>
     <dd><%= @project.owner.full_name %></dd>
   </dl>
 </section>
 
 <aside class="pledges">
-  <%= form_for [@project, @pledge] do |f| %>
-    <% if flash[:error] %>
-      <div class="error" style="color: red;">
-        <%= flash[:error] %>
-      </div>
+  <% if @project.pledges_by_current_user %>
+    <h3>You've made the following pledges to this project!</h3>
+    <% @project.pledges_by_current_user.each do |pledge| %>
+      <p>
+        <%= number_to_currency(pledge.amount) %>
+        (Reward: <strong><%= pledge.reward.name %></strong>)
+      </p>
     <% end %>
-    <fieldset>
-      <legend>Make a pledge on this project</legend>
-      <div class="errors">
-        <% if @pledge.errors.any? %>
-          <% @pledge.errors.full_messages.each do |error| %>
-            <p><%= error %></p>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="field">
-        <%= f.label :amount %>
-        $<%= f.text_field :amount %>.00
-      </div>
-      <div class="field">
-        <%= f.button "Make Pledge" %>
-      </div>
-    </fieldset>
-  <% end %>
-
-  <% if current_user %>
-    <h3>Your pledges to this project</h3>
-
-    <ul class="user pledges">
-      <% @pledges.each do |pledge| %>
-        <li>
-          <div class="pledge date"><%= pledge.created_at.strftime("%A, %B %d %Y") %></div>
-          <div class="pledge amount"><%= number_to_currency(pledge.amount) %></div>
-        </li>
-      <% end %>
-    </ul>
   <% end %>
 </aside>
 
-<section class="project rewards">
+<section class="rewards">
   <% @project.rewards.each do |reward| %>
-    <header class="reward"><%= reward.name %></header>
-    <article class="description"><%= reward.description %></article>
-    <aside class="amount"><%= number_to_currency(reward.amount) %></aside>
-    <footer class="limit"><%= reward.limit %></footer>
+    <%= render partial: 'show_reward', locals: {reward: reward} %>
   <% end %>
 </section>

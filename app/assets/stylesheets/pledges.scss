@@ -2,21 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-ul.pledges {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-  overflow: auto;
-}
+// ul.pledges {
+//   list-style: none;
+//   padding: 0;
+//   margin: 20px 0;
+//   overflow: auto;
+// }
 
-li.user.pledge {
-  background: rgba(200,200,200,0.2);
-  padding: 10px 40px;
-  box-sizing: border-box;
-  width: 20%;
-  float: left;
-}
+// li.user.pledge {
+//   background: rgba(200,200,200,0.2);
+//   padding: 10px 40px;
+//   box-sizing: border-box;
+//   width: 20%;
+//   float: left;
+// }
 
-li.user.pledge:nth-child(even) {
-  background: rgba(200,200,200,0.4);
-}
+// li.user.pledge:nth-child(even) {
+//   background: rgba(200,200,200,0.4);
+// }
+
+// dl.rewards {
+//   float: right;
+//   width: 40%;
+// }

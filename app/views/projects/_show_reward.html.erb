@@ -1,0 +1,19 @@
+<h3>Reward: <%= reward.name %></h3>
+<p><%= reward.description %></p>
+
+<dl class="rewards">
+
+    <dt>Amount</dt>
+    <dd><%= reward.amount %></dd>
+
+    <dt>Limit</dt>
+    <dd><%= reward.limit %></dd>
+
+    <%= form_for [@project,reward,reward.pledges.build] do |f| %>
+      <div class="field">
+        <%= f.label :amount %>
+        $<%= f.text_field :amount %>
+      </div>
+      <%= f.button 'Make pledge!' %>
+    <% end %>
+</dl>

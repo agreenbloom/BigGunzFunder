@@ -1,0 +1,39 @@
+<aside class="pledges">
+  <%= form_for [@project, @pledge] do |f| %>
+    <% if flash[:error] %>
+      <div class="error" style="color: red;">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    <fieldset>
+      <legend>Make a pledge on this project</legend>
+      <div class="errors">
+        <% if @pledge.errors.any? %>
+          <% @pledge.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :amount %>
+        $<%= f.text_field :amount %>.00
+      </div>
+      <div class="field">
+        <%= f.button "Make Pledge" %>
+      </div>
+    </fieldset>
+  <% end %>
+
+  <% if current_user %>
+    <h3>Your pledges to this project</h3>
+
+    <ul class="user pledges">
+      <% @pledges.each do |pledge| %>
+        <li>
+          <div class="pledge date"><%= pledge.created_at.strftime("%A, %B %d %Y") %></div>
+          <div class="pledge amount"><%= number_to_currency(pledge.amount) %></div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</aside>

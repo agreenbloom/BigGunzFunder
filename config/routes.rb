@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', :as => :logout
 
   resources :projects do
-    resources :rewards, only: [:index, :create, :new, :destroy]
-    resources :pledges, only: [:index, :new, :create, :show]
+    resources :rewards, only: [:index, :create, :new, :destroy] do #, shallow: true
+      resources :pledges, only: [:index, :new, :create, :show]
+    end
   end
 end

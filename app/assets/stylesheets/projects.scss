@@ -23,8 +23,6 @@ aside.pledges {
 }
 
 section.project {
-  width: 60%;
-  float: left;
   dl {
     margin: 0;
     dt {
@@ -36,11 +34,7 @@ section.project {
 }
 
 aside.pledges {
-  float: right;
-  overflow: auto;
-  width: 40%;
   form {
-    text-align: center;
     fieldset {
       border: 2px solid rgba(41, 128, 185, 1);
     }
@@ -66,7 +60,6 @@ aside.pledges {
   }
   h3 {
     margin-top: 30px;
-    text-align: center;
   }
   ul.user.pledges {
     margin: 0;
@@ -86,11 +79,8 @@ aside.pledges {
         color: white;
         &.date {
           display: inline;
-          width: 60%;
-          text-align: left;
         }
         &.amount {
-          float: right;
           font-weight: bold;
           padding: 40px 0 0;
           font-size: 1.8rem;
