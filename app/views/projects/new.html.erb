@@ -21,9 +21,19 @@
     <%= f.label :goal %>
     $<%= f.number_field :goal %>.00
   </div>
+
+  <h4>Add rewards</h4>
+
+  <div id="rewards">
+    <%= f.fields_for :rewards do |reward_fields| %>
+      <%= render 'reward_fields', f: reward_fields %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add reward', f, :rewards %>
+    </div>
+  </div>
+
   <div class="field">
     <%= f.button "Create Project" %>
   </div>
-
-
 <% end %>

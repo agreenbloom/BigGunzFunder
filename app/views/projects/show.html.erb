@@ -26,7 +26,12 @@
 </section>
 
 <aside class="pledges">
-  <%= form_for [@project, @pledge] do |f| -%>
+  <%= form_for [@project, @pledge] do |f| %>
+    <% if flash[:error] %>
+      <div class="error" style="color: red;">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
     <fieldset>
       <legend>Make a pledge on this project</legend>
       <div class="errors">
@@ -38,7 +43,7 @@
       </div>
       <div class="field">
         <%= f.label :amount %>
-        $<%= f.number_field :amount %>.00
+        $<%= f.text_field :amount %>.00
       </div>
       <div class="field">
         <%= f.button "Make Pledge" %>
@@ -60,3 +65,11 @@
   <% end %>
 </aside>
 
+<section class="project rewards">
+  <% @project.rewards.each do |reward| %>
+    <header class="reward"><%= reward.name %></header>
+    <article class="description"><%= reward.description %></article>
+    <aside class="amount"><%= number_to_currency(reward.amount) %></aside>
+    <footer class="limit"><%= reward.limit %></footer>
+  <% end %>
+</section>

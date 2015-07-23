@@ -9,7 +9,9 @@
 <body>
 
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: name %>
+  <% if name != "error" %>
+    <%= content_tag :div, msg, class: name %>
+  <% end %>
 <% end %>
 
 <% if current_user %>

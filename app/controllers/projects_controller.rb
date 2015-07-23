@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.owner = @current_user
+    @project.owner = current_user
     if @project.save
       flash[:notice] = "Project #{@project.name} successfully created."
       redirect_to projects_url
@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :description, :start_date, :end_date, :goal)
+    params.require(:project).permit(:name, :description, :start_date, :end_date,
+      :goal, rewards_attributes: [:id, :name, :description, :amount, :limit, :_destroy])
   end
 end

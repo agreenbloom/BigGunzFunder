@@ -1,5 +1,9 @@
 <h1>Projects</h1>
 
+<% if current_user %>
+  <%= link_to "Add new project", new_project_path %>
+<% end %>
+
 <ul id="projects">
   <% @projects.each do |p| %>
     <li><%= link_to p.name, p %></li>

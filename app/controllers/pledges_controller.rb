@@ -9,11 +9,12 @@ class PledgesController < ApplicationController
     @pledge.backer = current_user
     if @pledge.save
       flash[:notice] = "Thanks for pledging $#{@pledge.amount}0!"
-      redirect_to @pledge.project
     else
-      flash[:alert] = "Unable to make pledge.  Please try again."
-      redirect_to @pledge.project
+      flash[:alert] = "Unable to make pledge"
+      flash[:error] = @pledge.errors.full_messages.first
     end
+
+    redirect_to @pledge.project
   end
 
   def show
