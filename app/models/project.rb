@@ -4,6 +4,10 @@ class Project < ActiveRecord::Base
   has_many :pledges
   has_many :backers, through: :pledges, class_name: 'User'
 
+  validates :goal, numericality: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+
   def raised
     self.pledges.sum("amount")
   end

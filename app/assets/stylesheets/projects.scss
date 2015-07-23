@@ -74,8 +74,15 @@ aside.pledges {
           float: left;
           width: 60%;
           text-align: left;
+          color: rgba(160,160,160,1);
         }
-        &.amount { float: right; }
+        &.amount {
+          float: right;
+          font-weight: bold;
+          padding: 20px 0 10px;
+          font-size: 1.8rem;
+          color: rgba(80,80,80,1);
+        }
       }
     }
   }
