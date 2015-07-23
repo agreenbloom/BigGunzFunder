@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722193541) do
+ActiveRecord::Schema.define(version: 20150723134907) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pledges", force: :cascade do |t|
     t.float    "amount"
@@ -35,8 +41,10 @@ ActiveRecord::Schema.define(version: 20150722193541) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "owner_id"
+    t.integer  "category_id"
   end
 
+  add_index "projects", ["category_id"], name: "index_projects_on_category_id"
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id"
 
   create_table "rewards", force: :cascade do |t|
@@ -50,6 +58,12 @@ ActiveRecord::Schema.define(version: 20150722193541) do
   end
 
   add_index "rewards", ["project_id"], name: "index_rewards_on_project_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",            null: false
