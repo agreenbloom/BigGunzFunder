@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   end
 
   def funds_raised
-    self.pledges.sum('amount')
+    self.rewards.sum('amount')
   end
 
   def funds_remaining_to_reach_goal

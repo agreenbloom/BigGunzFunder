@@ -30,7 +30,7 @@
     <h3>You've made the following pledges to this project!</h3>
     <% @project.pledges_by_user(current_user).each do |pledge| %>
       <p>
-        <%= number_to_currency(pledge.amount) %>
+        <%= number_to_currency(pledge.reward.amount) %>
         (Reward: <strong><%= pledge.reward.name %></strong>)
       </p>
     <% end %>

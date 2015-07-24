@@ -4,11 +4,11 @@ class PledgesController < ApplicationController
   end
 
   def create
-    @pledge = Pledge.new(pledge_params)
+    @pledge = Pledge.new
     @pledge.reward = Reward.find(params[:reward_id])
     @pledge.backer = current_user
     if @pledge.save
-      flash[:notice] = "Thanks for pledging $#{@pledge.amount}0!"
+      flash[:notice] = "Thanks for pledging $#{@pledge.reward.amount}0!"
     else
       flash[:alert] = "Unable to make pledge"
       flash[:error] = @pledge.errors.full_messages.first
@@ -18,10 +18,5 @@ class PledgesController < ApplicationController
 
   def show
     @pledge = Pledge.find(params[:id])
-  end
-
-  private
-  def pledge_params
-    params.require(:pledge).permit(:amount)
   end
 end
