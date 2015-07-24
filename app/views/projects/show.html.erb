@@ -17,6 +17,9 @@
     <dt>Funds raised:</dt>
     <dd><%= number_to_currency(@project.funds_raised) %></dd>
 
+    <dt>Amount remaining until goal is reached:</dt>
+    <dd><%= number_to_currency(@project.funds_remaining_to_reach_goal) %></dd>
+
     <dt>Project Owner</dt>
     <dd><%= @project.owner.full_name %></dd>
   </dl>
