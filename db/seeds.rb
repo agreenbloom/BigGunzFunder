@@ -1,11 +1,11 @@
 Category.destroy_all
 
-Category.create(name: 'Sports')
-Category.create(name: 'Movies')
-Category.create(name: 'Technology')
-Category.create(name: 'Science')
-Category.create(name: 'Dance')
-Category.create(name: 'Music')
+Category.create!(name: 'Sports')
+Category.create!(name: 'Movies')
+Category.create!(name: 'Technology')
+Category.create!(name: 'Science')
+Category.create!(name: 'Dance')
+Category.create!(name: 'Music')
 
 User.destroy_all
 

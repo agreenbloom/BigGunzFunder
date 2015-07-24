@@ -1,5 +1,13 @@
 <h2><%= @project.name %></h2>
 
+<% if @project.errors.any? %>
+  <ul>
+    <%= @project.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <section class="project">
   <dl>
     <dt>Description</dt>
