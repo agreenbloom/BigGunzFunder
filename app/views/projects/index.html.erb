@@ -4,8 +4,13 @@
   <%= link_to "Add new project", new_project_path %>
 <% end %>
 
+<h1><small><%= page_entries_info @projects %></small></h1>
+
+
 <ul id="projects">
   <% @projects.each do |p| %>
     <li><%= link_to p.name, p %></li>
   <% end %>
 </ul>
+
+<%= paginate @projects %>

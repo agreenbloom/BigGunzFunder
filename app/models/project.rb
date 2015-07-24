@@ -53,7 +53,7 @@ class Project < ActiveRecord::Base
   end
 
   def start_date_cannot_be_in_the_past
-    if self.start_date.present? && self.start_date < DateTime.now.start_of_day
+    if self.start_date.present? && self.start_date < DateTime.now.beginning_of_day
       errors.add(:start_date, "cannot be in the past.")
     end
   end

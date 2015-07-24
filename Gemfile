@@ -32,6 +32,9 @@ gem 'sorcery'
 # Nested form handling
 gem 'cocoon'
 
+# Pagination handling
+gem 'kaminari'
+
 # Quiet Assets turns off Rails asset pipeline log.
 gem 'quiet_assets', '~> 1.1.0'
 
