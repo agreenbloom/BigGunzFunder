@@ -4,4 +4,7 @@ $(document).on('ready page:load', function() {
       $.getScript($('.pagination span.next').children().attr('href'));
     }
   });
+
+
+
 });
