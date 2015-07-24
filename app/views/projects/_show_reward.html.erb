@@ -9,6 +9,9 @@
     <dt>Limit</dt>
     <dd><%= reward.limit %></dd>
 
+    <dt>Remaining:</dt>
+    <dd><%= reward.remaining %></dd>
+
     <%= form_for [@project,reward,reward.pledges.build] do |f| %>
       <div class="field">
         <%= f.label :amount %>

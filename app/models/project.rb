@@ -10,7 +10,11 @@ class Project < ActiveRecord::Base
   validates :start_date, presence: true
   validates :end_date, presence: true
 
-  def pledges_by_current_user
-    self.pledges.where(backer: @current_user)
+  def pledges_by_user(user)
+    self.pledges.where(backer: user)
+  end
+
+  def funds_raised
+    self.pledges.sum('amount')
   end
 end

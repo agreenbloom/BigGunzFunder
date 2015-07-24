@@ -14,15 +14,18 @@
     <dt>Goal:</dt>
     <dd><%= number_to_currency(@project.goal) %></dd>
 
+    <dt>Funds raised:</dt>
+    <dd><%= number_to_currency(@project.funds_raised) %></dd>
+
     <dt>Project Owner</dt>
     <dd><%= @project.owner.full_name %></dd>
   </dl>
 </section>
 
 <aside class="pledges">
-  <% if @project.pledges_by_current_user %>
+  <% if @project.pledges_by_user(current_user).count > 0 %>
     <h3>You've made the following pledges to this project!</h3>
-    <% @project.pledges_by_current_user.each do |pledge| %>
+    <% @project.pledges_by_user(current_user).each do |pledge| %>
       <p>
         <%= number_to_currency(pledge.amount) %>
         (Reward: <strong><%= pledge.reward.name %></strong>)
