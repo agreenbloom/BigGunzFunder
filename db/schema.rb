@@ -22,10 +22,11 @@ ActiveRecord::Schema.define(version: 20150724184011) do
   create_table "pledges", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "reward_id"
     t.integer  "backer_id"
+    t.integer  "reward_id"
   end
 
+  add_index "pledges", ["backer_id"], name: "index_pledges_on_backer_id"
   add_index "pledges", ["reward_id"], name: "index_pledges_on_reward_id"
 
   create_table "projects", force: :cascade do |t|
