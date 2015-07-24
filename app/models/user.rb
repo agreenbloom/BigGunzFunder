@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   def total_pledges
     self.pledges.sum('amount')
   end
+
+
+
+
 end
