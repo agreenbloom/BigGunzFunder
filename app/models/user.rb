@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def total_pledges
-    self.pledges.sum('amount')
+    self.rewards.sum('amount')
   end
 
 

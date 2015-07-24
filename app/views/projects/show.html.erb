@@ -5,19 +5,22 @@
     <dt>Description</dt>
     <dd><%= @project.description %></dd>
 
-    <dt>Start Date:</dt>
+    <dt>Start Date</dt>
     <dd><%= @project.start_date.strftime("%B %e, %Y") %></dd>
 
-    <dt>End Date:</dt>
+    <dt>End Date</dt>
     <dd><%= @project.end_date.strftime("%B %e, %Y") %></dd>
 
-    <dt>Goal:</dt>
+    <dt>Days Remaining</dt>
+    <dd><%= @project.days_remaining %></dd>
+
+    <dt>Goal</dt>
     <dd><%= number_to_currency(@project.goal) %></dd>
 
-    <dt>Funds raised:</dt>
+    <dt>Funds raised</dt>
     <dd><%= number_to_currency(@project.funds_raised) %></dd>
 
-    <dt>Amount remaining until goal is reached:</dt>
+    <dt>Amount remaining until goal is reached</dt>
     <dd><%= number_to_currency(@project.funds_remaining_to_reach_goal) %></dd>
 
     <dt>Project Owner</dt>
