@@ -27,15 +27,6 @@ class Project < ActiveRecord::Base
     self.pledges.where(backer: user)
   end
 
-  def funds_remaining_to_reach_goal
-    self.goal - self.pledges.sum('amount')
-  end
-
-  def start_date_cannot_be_in_the_past
-    if self.start_date.present? && self.start_date < DateTime.now
-      errors.add(start_date, "cannot be in the past.")
-    end
-  end
 
   def funds_raised
     self.rewards.sum('amount')
@@ -49,22 +40,28 @@ class Project < ActiveRecord::Base
     self.pledges.where(backer: user)
   end
 
-  def start_date_cannot_be_in_the_past
-    if self.start_date.present? && self.start_date < DateTime.now.utc
-      errors.add(self.start_date, "cannot be in the past.")
-    end
+  # Custom Validations
+
+  def funds_remaining_to_reach_goal
+    self.goal - self.pledges.sum('amount')
   end
 
   def cannot_be_finished_before_start_date
     if self.end_date.present? && self.end_date < self.start_date
-      errors.add(self.end_date, "cannot finish before start date")
+      errors.add(:end_date, "cannot finish before start date")
+    end
+  end
+
+  def start_date_cannot_be_in_the_past
+    if self.start_date.present? && self.start_date < DateTime.now.start_of_day
+      errors.add(:start_date, "cannot be in the past.")
     end
   end
 
   def max_project_duration
     if self.end_date.present? && self.start_date.present?
       if (self.end_date - self.start_date) > 1.month
-        errors.add(self.end_date, "project can't be longer than 1 month long")
+        errors.add(:end_date, "project can't be longer than 1 month long")
       end
     end
   end
