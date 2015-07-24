@@ -13,19 +13,25 @@ class Project < ActiveRecord::Base
   validate :start_date_cannot_be_in_the_past
   validate :cannot_be_finished_before_start_date
   validate :max_project_duration
+  validate :funds_remaining_to_reach_goal
 
-  def pledges_by_current_user
-    self.pledges.where(backer: @current_user)
+
+  def funds_raised
+    self.rewards.sum('amount')
+  end
+
+  def funds_remaining_to_reach_goal
+    self.goal - self.funds_raised
+  end
+
+  def pledges_by_user(user)
+    self.pledges.where(backer: user)
   end
 
   def start_date_cannot_be_in_the_past
     if :start_date.present? && :start_date < Date.today
       errors.add(:start_date, "cannot be in the past.")
     end
-  end
-
-  def funds_raised
-    self.rewards.sum('amount')
   end
 
   def cannot_be_finished_before_start_date
@@ -41,4 +47,5 @@ class Project < ActiveRecord::Base
       end
     end
   end
+
 end
