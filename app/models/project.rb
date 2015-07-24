@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   validates :end_date, presence: true
 
   validate :start_date_cannot_be_in_the_past
-  validate :cannot_be_finish_before_start_date
+  validate :cannot_be_finished_before_start_date
 
   def pledges_by_current_user
     self.pledges.where(backer: @current_user)
@@ -23,9 +23,17 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def cannot_be_finish_before_start_date
+  def cannot_be_finished_before_start_date
     if :end_date.present? && :end_date < :start_date
       errors.add(:end_date, "cannot finish before start date")
+    end
+  end
+
+  def max_project_duration
+    if :end_date.present? && :start_date.present?
+      if (:end_date - :start_date) > 1.month
+        errors.add(:end_date, "project can't be longer than 1 month long")
+      end
     end
   end
 
