@@ -9,7 +9,7 @@ Category.create(name: 'Music')
 
 User.destroy_all
 
-User.create(
+User.create!(
   first_name: 'Michael',
   last_name: 'Fich',
   email: 'michaeltf@gmail.com',
@@ -17,7 +17,7 @@ User.create(
   password_confirmation: '1234'
 )
 
-User.create(
+User.create!(
   first_name: 'Nancy',
   last_name: 'Wood',
   email: 'nancy@wood.com',
@@ -25,7 +25,7 @@ User.create(
   password_confirmation: '1234'
 )
 
-User.create(
+User.create!(
   first_name: 'Kevin',
   last_name: 'McLoughlin',
   email: 'kevin@mcloughlin.com',
@@ -33,7 +33,7 @@ User.create(
   password_confirmation: '1234'
 )
 
-User.create(
+User.create!(
   first_name: 'Abby',
   last_name: 'Greenbloom',
   email: 'abby@greenbloom.com',

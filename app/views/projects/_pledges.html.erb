@@ -1,5 +1,5 @@
 <aside class="pledges">
-  <%= form_for [@project, @pledge] do |f| %>
+  <%= form_for [@project, @pledge :remote => true ] do |f| %>
     <% if flash[:error] %>
       <div class="error" style="color: red;">
         <%= flash[:error] %>
