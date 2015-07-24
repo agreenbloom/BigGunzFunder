@@ -15,7 +15,6 @@ class Project < ActiveRecord::Base
   validate :max_project_duration
   validate :funds_remaining_to_reach_goal
 
-<<<<<<< HEAD
   def days_remaining
     if (DateTime.now.utc > self.start_date)
       (self.end_date.to_date - DateTime.now.to_date).to_i
@@ -35,7 +34,8 @@ class Project < ActiveRecord::Base
   def start_date_cannot_be_in_the_past
     if self.start_date.present? && self.start_date < DateTime.now
       errors.add(start_date, "cannot be in the past.")
-=======
+    end
+  end
 
   def funds_raised
     self.rewards.sum('amount')
@@ -57,8 +57,6 @@ class Project < ActiveRecord::Base
 
   def cannot_be_finished_before_start_date
     if self.end_date.present? && self.end_date < self.start_date
-      errors.add(self.end_date, "cannot finish before start date")
-    if end_date.present? && end_date < start_date
       errors.add(self.end_date, "cannot finish before start date")
     end
   end
