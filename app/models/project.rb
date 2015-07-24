@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
 
   validate :start_date_cannot_be_in_the_past
   validate :cannot_be_finished_before_start_date
+  validate :max_project_duration
 
   def pledges_by_current_user
     self.pledges.where(backer: @current_user)
