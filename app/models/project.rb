@@ -29,20 +29,20 @@ class Project < ActiveRecord::Base
   end
 
   def start_date_cannot_be_in_the_past
-    if :start_date.present? && :start_date < Date.today
+    if start_date.present? && start_date < DateTime.now.utc
       errors.add(:start_date, "cannot be in the past.")
     end
   end
 
   def cannot_be_finished_before_start_date
-    if :end_date.present? && :end_date < :start_date
+    if end_date.present? && end_date < start_date
       errors.add(:end_date, "cannot finish before start date")
     end
   end
 
   def max_project_duration
-    if :end_date.present? && :start_date.present?
-      if (:end_date - :start_date) > 1.month
+    if end_date.present? && start_date.present?
+      if (end_date - start_date) > 1.month
         errors.add(:end_date, "project can't be longer than 1 month long")
       end
     end
