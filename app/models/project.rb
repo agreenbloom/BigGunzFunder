@@ -56,15 +56,17 @@ class Project < ActiveRecord::Base
     self.pledges.where(backer: user)
   end
 
-  def start_date_cannot_be_in_the_past
-    if self.start_date.present? && self.start_date < DateTime.now.utc
-      errors.add(:start_date, "cannot be in the past.")
-    end
-  end
+  # Custom Validations
 
   def cannot_be_finished_before_start_date
     if self.end_date.present? && self.end_date < self.start_date
       errors.add(:end_date, "cannot finish before start date")
+    end
+  end
+
+  def start_date_cannot_be_in_the_past
+    if self.start_date.present? && self.start_date < DateTime.now.beginning_of_day
+      errors.add(:start_date, "cannot be in the past.")
     end
   end
 
@@ -75,5 +77,4 @@ class Project < ActiveRecord::Base
       end
     end
   end
-
 end
