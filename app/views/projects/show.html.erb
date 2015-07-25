@@ -1,5 +1,11 @@
 <h2><%= @project.name %></h2>
 
+<% unless @project.started? %>
+  <% if current_user === @project.owner %>
+    <p><%= link_to "Edit project", edit_project_path(@project) %></p>
+  <% end %>
+<% end %>
+
 <% if @project.errors.any? %>
   <ul>
     <%= @project.errors.full_messages.each do |error| %>
@@ -19,8 +25,15 @@
     <dt>End Date</dt>
     <dd><%= @project.end_date.strftime("%B %e, %Y") %></dd>
 
-    <dt>Days Remaining</dt>
-    <dd><%= @project.days_remaining %></dd>
+    <% unless @project.started? %>
+      <dt>Days remaining until start date</dt>
+      <dd><%= @project.days_remaining_until_end_date %></dd>
+    <% end %>
+
+    <% unless @project.ended? %>
+      <dt>Days remaining until end date</dt>
+      <dd><%= @project.days_remaining_until_end_date %></dd>
+    <% end %>
 
     <dt>Goal</dt>
     <dd><%= number_to_currency(@project.goal) %></dd>

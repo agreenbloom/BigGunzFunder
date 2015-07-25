@@ -10,8 +10,12 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @project.start_date = Date.today
+    @project.start_date = Date.today + 1.day
     @project.end_date = Date.today + 14.days
+  end
+
+  def show
+    @project = Project.find(params[:id])
   end
 
   def create
@@ -26,8 +30,20 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show
+  def edit
     @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    @project.update_attributes(project_params)
+    if @project.save
+      flash[:notice] = "Successfully updated the #{@project.name} project"
+      redirect_to @project
+    else
+      flash[:alert] = "There was an error updating #{@project.name}"
+      render :edit
+    end
   end
 
   private

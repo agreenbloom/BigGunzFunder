@@ -15,34 +15,41 @@ class Project < ActiveRecord::Base
   validate :max_project_duration
   validate :funds_remaining_to_reach_goal
 
-  def days_remaining
-    if (DateTime.now.utc > self.start_date)
+  def started?
+    DateTime.now >= self.start_date
+  end
+
+  def ended?
+    DateTime.now < self.end_date
+  end
+
+  def days_remaining_until_start_date
+    if started?
       (self.end_date.to_date - DateTime.now.to_date).to_i
     else
-      (self.start_date.to_date - DateTime.now.to_date).to_i
+      false
     end
   end
 
-  def pledges_by_user(user)
-    self.pledges.where(backer: user)
+  def days_remaining_until_end_date
+    unless started?
+      (self.start_date.to_date - DateTime.now.to_date).to_i
+    else
+      false
+    end
   end
 
   def funds_remaining_to_reach_goal
-    self.goal - self.pledges.sum('amount')
-  end
-
-  def start_date_cannot_be_in_the_past
-    if self.start_date.present? && self.start_date < DateTime.now
-      errors.add(start_date, "cannot be in the past.")
+    total = self.goal - self.pledges.sum('amount')
+    if total > 0
+      return total
+    else
+      return 0
     end
   end
 
   def funds_raised
     self.rewards.sum('amount')
-  end
-
-  def funds_remaining_to_reach_goal
-    self.goal - self.funds_raised
   end
 
   def pledges_by_user(user)
